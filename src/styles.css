@@ -1,0 +1,312 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #263238;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #263a52;
+    color: white;
+    padding: 28px 40px;
+}
+
+.header h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+}
+
+.header p {
+    margin: 0;
+    color: #d5deea;
+}
+
+/* Área principal */
+#content {
+    display: flex;
+    gap: 24px;
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* Painéis de projetos e tarefas */
+.subContent {
+    background-color: white;
+    border: 1px solid #e0e5eb;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 4%);
+    min-height: 320px;
+}
+
+#contentProj {
+    flex: 2;
+    min-width: 0;
+}
+
+#contentTask {
+    flex: 3;
+    min-width: 0;
+}
+
+/* Projetos */
+.listProjects {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.projectContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: #f8fafc;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #e0e5eb;
+}
+
+.projectName {
+    flex: 1;
+    overflow-wrap: anywhere;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.projectContent:hover {
+    background-color: #e4eefb;
+    border-color: #3268a8;
+}
+
+.projectContent.selected {
+    background-color: #d5e5f8;
+    border-color: #3268a8;
+}
+
+.projectContent.selected .projectName {
+    color: #254f82;
+    font-weight: bold;
+}
+
+/* Botões de projetos e tarefas*/
+.projectActions,
+.taskActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.editProject,
+.deleteProject,
+.editTask,
+.deleteTask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px 8px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.editProject,
+.editTask {
+    color: black;
+    border: 1px solid #3268a8;
+    background-color: #3268a8;
+
+}
+
+.editProject:hover,
+.editTask:hover {
+    background-color: #e4eefb;
+}
+
+.deleteProject,
+.deleteTask {
+    color: black;
+    border: 1px solid #c0392b;
+    background-color: #c0392b;
+}
+
+.deleteProject:hover,
+.deleteTask:hover {
+    background-color: #fdecea;
+}
+
+.projectActions img,
+.taskActions img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Tarefas */
+.listTasks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.taskContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid #e0e5eb;
+    border-radius: 8px;
+    background-color: #f8fafc;
+}
+
+.taskTexts {
+    flex: 1;
+    min-width: 0;
+}
+
+.taskContent h3 {
+    margin: 0 0 10px;
+    color: #263a52;
+}
+
+.taskContent p {
+    margin: 6px 0;
+    color: #526170;
+    font-size: 0.95rem;
+}
+
+/* Prioridades */
+.taskContent .taskPriority {
+    display: inline-block;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.taskContent .priority-high {
+    color: #b42318;
+    background-color: #fee4e2;
+}
+
+.taskContent .priority-medium {
+    color: #92400e;
+    background-color: #fef0c7;
+}
+
+.taskContent .priority-low {
+    color: #027a48;
+    background-color: #d1fadf;
+}
+
+/* Botões de adicionar */
+.openBtn {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3268a8;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.openBtn:hover {
+    background-color: #254f82;
+}
+
+.openBtn:focus-visible {
+    outline: 3px solid #8bbcff;
+    outline-offset: 3px;
+}
+
+
+/* Formulário de editar*/
+.editOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 45%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.editForm {
+    background-color: white;
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 20%);
+}
+
+.editForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.editForm input {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font: inherit;
+}
+
+.editForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* Ecrãs pequenos */
+@media (max-width: 650px) {
+    #content {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .subContent {
+        width: 100%;
+    }
+
+    .header {
+        padding: 24px;
+    }
+
+    .taskContent {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .taskActions {
+        margin-left: auto;
+    }
+}
